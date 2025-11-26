@@ -47,10 +47,20 @@ const unsubscribe = store.subscribe(() => {
   console.log("updated state", store.getState());
 });
 
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
+const actions = redux.bindActionCreators(
+  { orderCake, restock },
+  store.dispatch
+);
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
 
-store.dispatch(restock(3));
+// store.dispatch(restock(3));
+
+actions.orderCake();
+actions.orderCake();
+actions.orderCake();
+
+actions.restock(3);
 
 unsubscribe();
