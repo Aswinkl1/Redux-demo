@@ -1,10 +1,11 @@
 const redux = require("redux");
-
+const reduxLogeer = require("redux-logger");
 const INCREMENT = "INCREMENT";
 const RESTOCK = "RESTOCK";
 const BUYICECREAM = "BUYICECREAM";
 const RESTOCKICECREAM = "RESTOCKICECREAM";
 
+const logger = reduxLogeer.createLogger();
 function orderCake(quantity = 1) {
   return {
     type: INCREMENT,
@@ -83,12 +84,12 @@ const combined = redux.combineReducers({
   iceCream: reducerForIceCream,
 });
 
-const store = redux.createStore(combined);
+const store = redux.createStore(combined, redux.applyMiddleware(logger));
 
 console.log("inital state", store.getState());
 
 const unsubscribe = store.subscribe(() => {
-  console.log("updated state", store.getState());
+  // console.log("updated state", store.getState());
 });
 
 const actions = redux.bindActionCreators(
