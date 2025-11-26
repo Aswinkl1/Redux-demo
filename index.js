@@ -1,10 +1,18 @@
 const redux = require("redux");
 
 const INCREMENT = "INCREMENT";
+const RESTOCK = "RESTOCK";
 function orderCake(quantity = 1) {
   return {
     type: INCREMENT,
-    quantity: quantity,
+    payload: quantity,
+  };
+}
+
+function restock(quantity = 1) {
+  return {
+    type: RESTOCK,
+    payload: quantity,
   };
 }
 
@@ -16,7 +24,13 @@ function reducer(state = initialState, action) {
     case INCREMENT: {
       return {
         ...state,
-        numOfCakes: state.numOfCakes - action.quantity,
+        numOfCakes: state.numOfCakes - action.payload,
+      };
+    }
+    case RESTOCK: {
+      return {
+        ...state,
+        numOfCakes: state.numOfCakes + action.payload,
       };
     }
     default: {
@@ -33,12 +47,10 @@ const unsubscribe = store.subscribe(() => {
   console.log("updated state", store.getState());
 });
 
-const unsubscribe1 = store.subscribe(() => {
-  console.log("updated state1", store.getState());
-});
 store.dispatch(orderCake());
 store.dispatch(orderCake());
-store.dispatch(orderCake(2));
+store.dispatch(orderCake());
+
+store.dispatch(restock(3));
 
 unsubscribe();
-store.dispatch(orderCake(2));
