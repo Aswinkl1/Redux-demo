@@ -7,10 +7,12 @@ const initialState = {
   error: "",
 };
 
+//This are action type
 const FETCH_USER_REQUEST = "FETCH_USER_REQUEST";
 const FETCH_USER_SUCCEEDED = "FETCH_USER_SUCCEEDED";
 const FETCH_USER_ERROR = "FETCH_USER_ERROR";
 
+//This is called action creator
 function fetchUserRequest() {
   return {
     type: FETCH_USER_REQUEST,
@@ -31,6 +33,7 @@ function fetchUserError(error) {
   };
 }
 
+//This is called a reducer function and it hanldes the logic
 function reducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_USER_REQUEST: {

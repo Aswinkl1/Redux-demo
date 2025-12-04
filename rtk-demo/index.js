@@ -1,6 +1,6 @@
 const store = require("./app/store");
 const { fetchUser } = require("./features/user/userSlice");
-const cakeActions = require("./features/cake/cakeSlice").cakeActions;
+const cakeActions = require("./features/cake/cakeSlice").default.cakeActions;
 const icecreamActions = require("./features/icecream/icecream").icecreamActions;
 store.subscribe(() => {
   console.log("updated state ", store.getState());

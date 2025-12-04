@@ -1,6 +1,6 @@
-const { icecreamActions } = require("../icecream/icecream");
+import { icecreamActions } from "../icecream/icecream";
 
-const createSlice = require("@reduxjs/toolkit").createSlice;
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   numOfCakes: 10,
@@ -36,5 +36,5 @@ const cakeSlice = createSlice({
 console.log(cakeSlice.reducer.toString());
 console.log("actioin", cakeSlice.actions.ordered());
 
-module.exports = cakeSlice.reducer;
-module.exports.cakeActions = cakeSlice.actions;
+export default cakeSlice.reducer;
+export const cakeActions = cakeSlice.actions;
